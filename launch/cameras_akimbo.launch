@@ -1,0 +1,9 @@
+<launch>
+  <node name="cameras_akimbo" pkg="Ppetual" type="cameras_akimbo.py" output="screen"> 
+  	<param name="camera_mode" value="2" />
+  	<param name="image_width" value="1280" />
+  	<param name="image_height" value="720" />
+  	<param name="camera_frame_rate" value="30" />
+	<param name="image_flip" value="0" />
+  </node>
+</launch>
