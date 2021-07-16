@@ -17,34 +17,34 @@ class MCP23017(object):
         self.i2c_addr = i2c_addr
 
         # MCP23017 Registers
-        self.MCP23017_IODIRA = b'\x00'
-        self.MCP23017_IPOLA = b'\x02'
-        self.MCP23017_GPINTENA = b'\x04'
-        self.MCP23017_DEFVALA = b'\x06'
-        self.MCP23017_INTCONA = b'\x08'
-        self.MCP23017_IOCONA = b'\x0A'
-        self.MCP23017_GPPUA = b'\x0C'
-        self.MCP23017_INTFA = b'\x0E'
-        self.MCP23017_INTCAPA = b'\x10'
-        self.MCP23017_GPIOA = b'\x12'
-        self.MCP23017_OLATA = b'\x14'
+        self.MCP23017_IODIRA = 0x00
+        self.MCP23017_IPOLA = 0x02
+        self.MCP23017_GPINTENA = 0x04
+        self.MCP23017_DEFVALA = 0x06
+        self.MCP23017_INTCONA = 0x08
+        self.MCP23017_IOCONA = 0x0A
+        self.MCP23017_GPPUA = 0x0C
+        self.MCP23017_INTFA = 0x0E
+        self.MCP23017_INTCAPA = 0x10
+        self.MCP23017_GPIOA = 0x12
+        self.MCP23017_OLATA = 0x14
 
-        self.MCP23017_IODIRB = b'\x01'
-        self.MCP23017_IPOLB = b'\x03'
-        self.MCP23017_GPINTENB = b'\x05'
-        self.MCP23017_DEFVALB = b'\x07'
-        self.MCP23017_INTCONB = b'\x09'
-        self.MCP23017_IOCONB = b'\x0B'
-        self.MCP23017_GPPUB = b'\x0D'
-        self.MCP23017_INTFB = b'\x0F'
-        self.MCP23017_INTCAPB = b'\x11'
-        self.MCP23017_GPIOB = b'\x13'
-        self.MCP23017_OLATB = b'\x15'
+        self.MCP23017_IODIRB = 0x01
+        self.MCP23017_IPOLB = 0x03
+        self.MCP23017_GPINTENB = 0x05
+        self.MCP23017_DEFVALB = 0x07
+        self.MCP23017_INTCONB = 0x09
+        self.MCP23017_IOCONB = 0x0B
+        self.MCP23017_GPPUB = 0x0D
+        self.MCP23017_INTFB = 0x0F
+        self.MCP23017_INTCAPB = 0x11
+        self.MCP23017_GPIOB = 0x13
+        self.MCP23017_OLATB = 0x15
 
-        self.MCP_OUTPUTS = b'\x00'
-        self.MCP_INPUTS = b'\xFF'
-        self.MCP_PULLUP_NONE = b'\x00'
-        self.MCP_PULLUP_ALL = b'\xFF'
+        self.MCP_OUTPUTS = 0x00
+        self.MCP_INPUTS = 0xFF
+        self.MCP_PULLUP_NONE = 0x00
+        self.MCP_PULLUP_ALL = 0xFF
 
         try:
             # Try to open I2C bus
@@ -233,11 +233,11 @@ class PulseCounter(MCP23017):
         self.data_bank = 'B'
         self.control_register = self.MCP23017_GPIOA
         self.data_register = self.MCP23017_GPIOB
-        self.set_all = b'\xff'
-        self.select_GAL = b'\xdf'  # GAL, GAU,
-        self.select_GAU = b'\xef'
-        self.select_GBL = b'\xf7'
-        self.select_GBU = b'\xfb'
+        self.set_all = 0xff
+        self.select_GAL = 0xdf  # GAL, GAU,
+        self.select_GAU = 0xef
+        self.select_GBL = 0xf7
+        self.select_GBU = 0xfb
         self.CCLR = 0
 
         # Control bank are outputs, no pull-ups
@@ -245,13 +245,13 @@ class PulseCounter(MCP23017):
         self.set_pull_up(bank=self.control_bank, value=self.MCP_PULLUP_NONE)
 
         # Set all on except CCLR
-        self.write_register(register=self.control_register, value=b'\xfe')
+        self.write_register(register=self.control_register, value=0xfe)
 
         # Set CCLR to trigger reset
         self.write_register(register=self.control_register, value=self.set_all)
 
         # Reset RCLK to allow latching
-        self.write_register(register=self.control_register, value=b'\xfd')
+        self.write_register(register=self.control_register, value=0xfd)
 
         # data bank are inputs, no pull-ups
         self.set_direction(self.data_bank, self.MCP_INPUTS)
@@ -268,7 +268,7 @@ class PulseCounter(MCP23017):
 
         if reset_after_read:
             # Cycle the CCLR output
-            self.write_register(register=self.control_register, value=b'\xfe')
+            self.write_register(register=self.control_register, value=0xfe)
             self.write_register(register=self.control_register, value=self.set_all)
 
         # Reset GBU
@@ -288,7 +288,7 @@ class PulseCounter(MCP23017):
         new_counter_value_a += self.read_register(register=self.data_register)
 
         # Set GAL, Reset RCLK
-        self.write_register(register=self.control_register, value=b'\xfd')
+        self.write_register(register=self.control_register, value=0xfd)
 
         return new_counter_value_a, new_counter_value_b
 
@@ -299,7 +299,7 @@ class PulseCounter(MCP23017):
 
         if reset_after_read:
             # Cycle the RCLK output
-            self.write_register(register=self.control_register, value=b'\xfe')
+            self.write_register(register=self.control_register, value=0xfe)
             self.write_register(register=self.control_register, value=self.set_all)
 
         # Reset GBU
@@ -319,7 +319,7 @@ class PulseCounter(MCP23017):
         new_counter_value += self.read_register(register=self.data_register)
 
         # Set GAL, Reset RCLK
-        self.write_register(register=self.control_register, value=b'\xfd')
+        self.write_register(register=self.control_register, value=0xfd)
 
         return new_counter_value
 
