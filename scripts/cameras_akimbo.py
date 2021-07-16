@@ -3,7 +3,7 @@
 import rospy
 import warnings
 
-from Ppetual.msg import ImagesAndCount
+from jetson_dual_camera_and_counter.msg import ImagesAndCount
 from .pulse_counter import PulseCounter
 from .csi_camera import CsiCamera
 
@@ -11,7 +11,7 @@ warnings.filterwarnings("ignore")
 
 
 if __name__ == "__main__":
-    desc = """Dual wield Raspberry Pi cameras with a Jetson Nano"""
+    desc = """Dual wield Raspberry Pi v2 cameras with a Jetson Nano"""
 
     # Create a ROS node
     rospy.init_node("cameras_akimbo")

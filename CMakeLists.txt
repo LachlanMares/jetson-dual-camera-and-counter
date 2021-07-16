@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(Ppetual)
+project(jetson_dual_camera_and_counter)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -52,8 +52,8 @@ find_package(catkin REQUIRED COMPONENTS
 
 include_directories(
   ${catkin_INCLUDE_DIRS}
-  Ppetual/defs
-  Ppetual/scripts
+  jetson_dual_camera_and_counter/defs
+  jetson_dual_camera_and_counter/scripts
 )
 
 ## Generate messages in the 'msg' folder
@@ -123,13 +123,6 @@ catkin_package(
 ###########
 ## Build ##
 ###########
-
-## Specify additional locations of header files
-## Your package locations should be listed before other locations
-include_directories(
-# include
-  ${catkin_INCLUDE_DIRS}
-)
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}

@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>Ppetual</name>
+  <name>jetson_dual_camera_and_counter</name>
   <version>0.0.0</version>
-  <description>The Ppetual package</description>
+  <description>The jetson_dual_camera_and_counter package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
