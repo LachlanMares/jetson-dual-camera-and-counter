@@ -2,7 +2,7 @@
 
 import warnings
 import time
-from .pulse_counter import PulseCounter
+from pulse_counter import PulseCounter
 
 warnings.filterwarnings("ignore")
 
@@ -19,6 +19,6 @@ if __name__ == "__main__":
     for i in range(120):
 
         print(pulsecounter.read_16bit_counters(reset_after_read=True))
-        time.sleep(1)
+        time.sleep(5)
 
     SystemExit(0)

@@ -11,7 +11,7 @@ class MCP23017(object):
         i2c_bus (int): i2c bus number
         i2c_addr (byte): i2c bus address
     """
-    def __init__(self, i2c_bus=1, i2c_addr=b'\x20'):
+    def __init__(self, i2c_bus=1, i2c_addr=0x20):
 
         self.i2c_bus = i2c_bus
         self.i2c_addr = i2c_addr
@@ -225,7 +225,7 @@ class PulseCounter(MCP23017):
         i2c_bus (int): i2c bus number for the MCP23017 Class
         i2c_addr (byte): i2c bus address for the MCP23017 Class
     """
-    def __init__(self, i2c_bus=1, i2c_addr=b'\x20'):
+    def __init__(self, i2c_bus=1, i2c_addr=0x20):
         super().__init__(i2c_bus=i2c_bus, i2c_addr=i2c_addr)
 
         # SN74LV8154 control pins
