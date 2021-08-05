@@ -16,9 +16,9 @@ if __name__ == "__main__":
     # Clear the pulse counter
     pulsecounter.reset_count()
 
-    for i in range(120):
+    for i in range(60):
 
         print(pulsecounter.read_16bit_counters(reset_after_read=True))
-        time.sleep(5)
+        time.sleep(1)
 
     SystemExit(0)
